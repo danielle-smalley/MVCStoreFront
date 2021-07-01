@@ -4,26 +4,27 @@ namespace MVCStoreFront.UI.Controllers
 {
     public class HomeController : Controller
     {
-        [HttpGet]
+
         public ActionResult Index()
         {
             return View();
         }
 
-        [HttpGet]
-        [Authorize]
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
 
             return View();
         }
 
-        [HttpGet]
+
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
+            //TODO - need to add contact view
+            //TODO - need to create ContactViewModel
+            //TODO - hook up email
+            //TODO - create emailconfirmation.cshtml 
+            //TODO - add appsecretkeys.config. Make sure all config files are updated--connections.config, webconfig, etc.
+            //TODO - MAKE SURE Github sensitive data gitignore is working--currently is not
             return View();
         }
     }
