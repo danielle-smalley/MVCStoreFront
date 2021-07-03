@@ -27,5 +27,5 @@ namespace MVCStoreFront.UI.Controllers
             //TODO - MAKE SURE Github sensitive data gitignore is working--currently is not
             return View();
         }
-    }
-}
+    }//end class
+}//end namespace

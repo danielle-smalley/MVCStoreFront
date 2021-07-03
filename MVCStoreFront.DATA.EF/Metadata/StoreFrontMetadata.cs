@@ -79,9 +79,9 @@ namespace MVCStoreFront.DATA.EF//.Metadata
         [StringLength(50, ErrorMessage = "Value must be 50 characters or less")]
         public string Email { get; set; }
 
-        [DisplayFormat(NullDisplayText = "[N/A]")]
-        [Display(Name = "Direct Report")]
-        public Nullable<int> DirectReportID { get; set; }
+        //[DisplayFormat(NullDisplayText = "[N/A]")]
+        //[Display(Name = "Direct Report")]
+        //public Nullable<int> DirectReportID { get; set; } - Jenna suggested to leave this one out, will comment out for now
     }
     [MetadataType(typeof(EmployeeMetadata))]
     public partial class Employee   
