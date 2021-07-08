@@ -1,0 +1,148 @@
+﻿@model MVCStoreFront.UI.Models.ContactViewModel
+
+@{
+    /**/
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="contact-section section_padding">
+    <div class="container">
+        <div class="d-none d-sm-block mb-5 pb-4">
+            <div id="map" style="height: 480px;"></div>
+            <script>
+                function initMap() {
+                    var uluru = {
+                        lat: 38.95176,
+                        lng: -92.33446
+                    };
+                    var grayStyles = [{
+                        featureType: "all",
+                        stylers: [{
+                            saturation: -90
+                        },
+                        {
+                            lightness: 50
+                        }
+                        ]
+                    },
+                    {
+                        elementType: 'labels.text.fill',
+                        stylers: [{
+                            color: '#ccdee9'
+                        }]
+                    }
+                    ];
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: {
+                            lat: 38.95176,
+                            lng: -92.33446
+                        },
+                        zoom: 9,
+                        styles: grayStyles,
+                        scrollwheel: false
+                    });
+                }
+            </script>
+
+        </div>
+    </div>
+
+
+    @if (ViewBag.CustomerMessage != null)
+    {
+        <p>
+            @ViewBag.CustomerMessage
+        </p>
+    }
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @*<div class="form-horizontal">
+            <h4>Questions? Concerns? Send us a meow-sage!</h4>*@
+        <div class="row">
+            <div class="col-12">
+                <h2 class="contact-title">Send us a meow-sage!</h2>
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-12">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Please enter your name" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Please enter your email" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", placeholder = "Please enter a Subject" } })
+                                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", placeholder = "Please enter your messsage" } })
+                                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Send Message" class="btn_3 button-contactForm" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-home"></i></span>
+                    <div class="media-body">
+                        <h3>Columbia, Missouri</h3>
+                        <p>PO Box 123 65205</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+                    <div class="media-body">
+                        <h3>(444) 444-4444</h3>
+                        <p>Monday-Friday 9am to 6pm</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-email"></i></span>
+                    <div class="media-body">
+                        <h3>support@meowmart.com</h3>
+                        <p>Send us your query anytime!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+     }
+
+</section>
+
+<div>
+    @Html.ActionLink("Back to Home", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

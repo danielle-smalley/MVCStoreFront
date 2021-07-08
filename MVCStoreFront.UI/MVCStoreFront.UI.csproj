@@ -805,6 +805,7 @@
     <Content Include="fonts\webfonts\fa-solid-900.ttf" />
     <Content Include="fonts\webfonts\fa-solid-900.woff" />
     <Content Include="fonts\webfonts\fa-solid-900.woff2" />
+    <Content Include="configs\AppSecretKeys.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -930,6 +931,8 @@
     <Content Include="Views\Shared\OriginalLayout.cshtml" />
     <Content Include="Views\Home\Index - Copy.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\EmailConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
