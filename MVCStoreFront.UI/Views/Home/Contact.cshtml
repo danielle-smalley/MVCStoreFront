@@ -6,50 +6,65 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="contact-section section_padding">
+<section class="breadcrumb_part">
     <div class="container">
-        <div class="d-none d-sm-block mb-5 pb-4">
-            <div id="map" style="height: 480px;">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d198593.17128267355!2d-92.47092317814327!3d38.946410280361306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87dcabf3bb8182c9%3A0xa011692dbabd6f20!2sColumbia%2C%20MO!5e0!3m2!1sen!2sus!4v1625758241912!5m2!1sen!2sus" width="1000" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb_iner">
+                    <h2>Contact Us</h2>
+                </div>
             </div>
-            @*<script>
-                function initMap() {
-                    var uluru = {
-                        lat: 38.95176,
-                        lng: -92.33446
-                    };
-                    var grayStyles = [{
-                        featureType: "all",
-                        stylers: [{
-                            saturation: -90
-                        },
-                        {
-                            lightness: 50
-                        }
-                        ]
-                    },
-                    {
-                        elementType: 'labels.text.fill',
-                        stylers: [{
-                            color: '#ccdee9'
-                        }]
-                    }
-                    ];
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        center: {
-                            lat: 38.95176,
-                            lng: -92.33446
-                        },
-                        zoom: 9,
-                        styles: grayStyles,
-                        scrollwheel: false
-                    });
-                }
-            </script>*@
-
         </div>
     </div>
+</section>
+<section class="contact-section section_padding">
+    <div class="container">
+        @*<div class="d-none d-sm-block mb-5 pb-4">*@
+        <div class="row">
+            <div class="col-md-12">
+                <div id="map" style="height: 480px;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d198593.17128267355!2d-92.47092317814327!3d38.946410280361306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87dcabf3bb8182c9%3A0xa011692dbabd6f20!2sColumbia%2C%20MO!5e0!3m2!1sen!2sus!4v1625758241912!5m2!1sen!2sus" width="1200" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+                </div>
+                @*<script>
+                        function initMap() {
+                            var uluru = {
+                                lat: 38.95176,
+                                lng: -92.33446
+                            };
+                            var grayStyles = [{
+                                featureType: "all",
+                                stylers: [{
+                                    saturation: -90
+                                },
+                                {
+                                    lightness: 50
+                                }
+                                ]
+                            },
+                            {
+                                elementType: 'labels.text.fill',
+                                stylers: [{
+                                    color: '#ccdee9'
+                                }]
+                            }
+                            ];
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                center: {
+                                    lat: 38.95176,
+                                    lng: -92.33446
+                                },
+                                zoom: 9,
+                                styles: grayStyles,
+                                scrollwheel: false
+                            });
+                        }
+                    </script>*@
+
+            </div>
+        </div>
+    </div>
+
 
 
     @if (ViewBag.CustomerMessage != null)
@@ -64,11 +79,13 @@
 
         @*<div class="form-horizontal">
             <h4>Questions? Concerns? Send us a meow-sage!</h4>*@
+        <br/>
+        <br/>
         <div class="row">
-            <div class="col-12">
+            <div class="col-md-12 col-offset-2">
                 <h2 class="contact-title">Send us a meow-sage!</h2>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-9 col-offsest-1">
                 <div class="row">
                     <div class="col-12">
                         <hr />
@@ -114,7 +131,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-2">
                 <div class="media contact-info">
                     <span class="contact-info__icon"><i class="ti-home"></i></span>
                     <div class="media-body">
@@ -138,13 +155,13 @@
                 </div>
             </div>
         </div>
-     }
+    }
 
 </section>
 
-<div>
-    @Html.ActionLink("Back to Home", "Index")
-</div>
+@*<div>
+        @Html.ActionLink("Back to Home", "Index")
+    </div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

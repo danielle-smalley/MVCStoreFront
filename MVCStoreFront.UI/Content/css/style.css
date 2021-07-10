@@ -710,7 +710,7 @@ ul {
 
 /* line 163, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_button.scss */
 .button-contactForm {
-  color: #fff;
+  /*color: #fff;*/
   border-color: #edeff2;
   padding: 12px 25px;
 }
@@ -2407,12 +2407,12 @@ ul {
   .navbar-brand img {
     max-width: 300px;
     margin: 0 auto;
-    position: absolute;
-    left: 0;
+    /*position: absolute;*/
+    padding-left: 20px;
     right: 0;
     display: inline-block;
     top: 3px;
-    border: solid black;
+    /*border: solid black;*/
   }
   /* line 223, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_menu.scss */
   .navbar-light .navbar-toggler {

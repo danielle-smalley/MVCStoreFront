@@ -844,7 +844,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\OriginalAbout.cshtml" />
+    <Content Include="_Archive\OriginalAbout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -943,7 +943,7 @@
     <Content Include="_Archive\webfonts\fa-solid-900.woff" />
     <Content Include="_Archive\webfonts\fa-solid-900.woff2" />
     <Content Include="Views\Shared\OriginalLayout.cshtml" />
-    <Content Include="Views\Home\Index - Copy.cshtml" />
+    <Content Include="_Archive\Index - Copy.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\EmailConfirmation.cshtml" />
