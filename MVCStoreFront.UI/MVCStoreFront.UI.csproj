@@ -245,6 +245,8 @@
     <Content Include="Content\img\banner_img.png" />
     <Content Include="Content\img\banner_pattern.png" />
     <Content Include="Content\img\banner_shape.png" />
+    <Content Include="Content\img\blackcat.jfif" />
+    <Content Include="Content\img\blackcat.jpg" />
     <Content Include="Content\img\blog\add.jpg" />
     <Content Include="Content\img\blog\author.png" />
     <Content Include="Content\img\blog\blog1.png" />
@@ -297,12 +299,14 @@
     <Content Include="Content\img\category\category_7.png" />
     <Content Include="Content\img\category\category_8.png" />
     <Content Include="Content\img\category\category_9.png" />
+    <Content Include="Content\img\cattree.jpg" />
     <Content Include="Content\img\client.png" />
     <Content Include="Content\img\client_1.png" />
     <Content Include="Content\img\client_2.png" />
     <Content Include="Content\img\comment\comment_1.png" />
     <Content Include="Content\img\comment\comment_2.png" />
     <Content Include="Content\img\comment\comment_3.png" />
+    <Content Include="Content\img\depositphotos_89429838-stock-photo-closed-cat-litter-box.jpg" />
     <Content Include="Content\img\elements\a.jpg" />
     <Content Include="Content\img\elements\a2.jpg" />
     <Content Include="Content\img\elements\d.jpg" />
@@ -351,6 +355,7 @@
     <Content Include="Content\img\icon\right-arrow.svg" />
     <Content Include="Content\img\icon\right.svg" />
     <Content Include="Content\img\icon\star.svg" />
+    <Content Include="Content\img\litterbox.jpg" />
     <Content Include="Content\img\login.jpg" />
     <Content Include="Content\img\mmlogo.png" />
     <Content Include="Content\img\offer-bg.png" />
@@ -385,6 +390,9 @@
     <Content Include="Content\img\single_product_1.png" />
     <Content Include="Content\img\single_product_2.png" />
     <Content Include="Content\img\single_product_3.png" />
+    <Content Include="Content\img\test1.jpg" />
+    <Content Include="Content\img\test2.jpg" />
+    <Content Include="Content\img\test3.jpg" />
     <Content Include="Content\img\time_line_1.png" />
     <Content Include="Content\img\tranding_item\tranding_item_1.png" />
     <Content Include="Content\img\tranding_item\tranding_item_2.png" />
@@ -392,6 +400,7 @@
     <Content Include="Content\img\tranding_item\tranding_item_4.png" />
     <Content Include="Content\img\tranding_item\tranding_item_5.png" />
     <Content Include="Content\img\tranding_item\tranding_item_6.png" />
+    <Content Include="Content\img\whitecat.jpg" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\themify.svg" />
     <Content Include="fonts\webfonts\fa-brands-400.svg" />
