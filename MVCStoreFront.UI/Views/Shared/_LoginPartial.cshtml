@@ -17,16 +17,16 @@ else
 {
     @*<ul class="nav navbar-nav navbar-right">*@
     <li class="nav-item">
-        <a class="nav-item" href="@Url.Action("Register", "Account")" id="registerLink">
+        <a class="nav-link" href="@Url.Action("Register", "Account")" id="registerLink">
             Register @*We add the area-hidden true so screenreaders ignore this (it's an icon)*@
         </a>
     </li>
     @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
     @*</ul>*@
-    <li class="nav-item">
+    @*<li class="nav-item">
         <a class="nav-item" href="@Url.Action("Login", "Account")" id="loginLink">
             Login
         </a>
-    </li>
+    </li>*@
 }
