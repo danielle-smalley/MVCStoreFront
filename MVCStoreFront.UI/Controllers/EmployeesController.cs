@@ -37,6 +37,7 @@ namespace MVCStoreFront.UI.Controllers
         }
 
         // GET: Employees/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.DeptID = new SelectList(db.Departments, "DeptID", "DeptName");
@@ -48,6 +49,7 @@ namespace MVCStoreFront.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "EmpID,DeptID,FirstName,LastName,JobTitle,HireDate,Phone,Email,DirectReportID")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -62,6 +64,7 @@ namespace MVCStoreFront.UI.Controllers
         }
 
         // GET: Employees/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,6 +85,7 @@ namespace MVCStoreFront.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "EmpID,DeptID,FirstName,LastName,JobTitle,HireDate,Phone,Email,DirectReportID")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -95,6 +99,7 @@ namespace MVCStoreFront.UI.Controllers
         }
 
         // GET: Employees/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,8 +115,10 @@ namespace MVCStoreFront.UI.Controllers
         }
 
         // POST: Employees/Delete/5
+        //TODO - do i need to add soft delete for employees? If so, how?
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Employee employee = db.Employees.Find(id);

@@ -114,6 +114,7 @@ namespace MVCStoreFront.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "ProductID,ProductName,CategoryID,Description,Price,ItemsPerUnit,UnitsOnOrder,UnitsSold,UnitsInStock,StockStatusID,Image")] Product product, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)

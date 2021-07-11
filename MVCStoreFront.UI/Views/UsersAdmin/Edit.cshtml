@@ -4,15 +4,24 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit.</h2>
+<section class="breadcrumb_part">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb_iner">
+                    <h2>Edit User</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Edit User Form.</h4>
-        <hr />
+        <br />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
 

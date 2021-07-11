@@ -33,7 +33,6 @@
     <link rel="stylesheet" href="~/Content/css/style.css">
 </head>
 <body>
-    <!--TODO - fix console errors-->
     <!--::header part start::-->
     <header class="main_menu home_menu">
         <div class="container">
@@ -57,13 +56,21 @@
                                     <a class="nav-link" href="@Url.Action("About", "Home")">About</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="@Url.Action("Products", "Home")" id="navbarDropdown_1"
+                                    <a class="nav-link dropdown-toggle" href="@Url.Action("Index", "Products")" id="navbarDropdown_1"
                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Product
+                                        Products
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="@Url.Action("ProductList", "Home")"> Product List</a>
-                                        <a class="dropdown-item" href="@Url.Action("ProductDetails", "Home")">Product Details</a>
+                                        <a class="dropdown-item" href="@Url.Action("Index", "Products")"> Product Catalog</a>
+                                        @*<a class="dropdown-item" href="@Url.Action("ProductDetails", "Home")">Product Details</a>*@
+                                        <a class="dropdown-item" href="@Url.Action("Index", "ProductCategories")"> Product Categories</a>
+
+                                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                                        {
+                                            <a class="dropdown-item" href="@Url.Action("Index", "StockStatus")"> Stock Statuses</a>
+                                            <a class="dropdown-item" href="@Url.Action("Index", "Departments")"> Departments</a>
+                                            <a class="dropdown-item" href="@Url.Action("Index", "Employees")"> Employees</a>
+                                        }
                                     </div>
                                 </li>
                                 <li class="nav-item">
@@ -71,12 +78,13 @@
                                 </li>
                                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                                 {
-                                    <li class="nav-item">
-                                        <span class="opener">Admin Functions</span>
-                                        <ul>
-                                            <li class="nav-item">@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
-                                            <li class="nav-item">@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
-                                        </ul>
+
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Functions</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                            <a class="dropdown-item" href="@Url.Action("Index", "RolesAdmin")">Roles Admin</a>
+                                            <a class="dropdown-item" href="@Url.Action("Index", "UsersAdmin")">Users Admin</a>
+                                    </div>
                                     </li>
                                 }
                                 @Html.Partial("_LoginPartial")
@@ -119,7 +127,7 @@
                         <div class="footer_menu">
                             <div class="footer_logo">
                                 <a href="@Url.Action("Index", "Home")"><img src="~/Content/img/mmlogo.png" alt="MeowMart Cat Logo"></a>
-                                <!--TODO - come back and put in own logo and update all of the links below in footer-->
+
                             </div>
                         </div>
                     </div>

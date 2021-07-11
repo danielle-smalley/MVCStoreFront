@@ -5,11 +5,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<section class="breadcrumb_part">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb_iner">
+                    <h2>Stock Statuses</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -24,9 +37,15 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StockStatusID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StockStatusID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StockStatusID })
+            @Html.ActionLink("Details", "Details", new { id = item.StockStatusID })
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                @:|
+                @Html.ActionLink("Edit", "Edit", new { id = item.StockStatusID }) @:|
+                @Html.ActionLink("Delete", "Delete", new { id = item.StockStatusID })
+            }
+
+
         </td>
     </tr>
 }

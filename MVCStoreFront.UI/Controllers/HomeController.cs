@@ -25,9 +25,7 @@ namespace MVCStoreFront.UI.Controllers
         [HttpGet]
         public ActionResult Contact()
         {
-            //TODO - hook up email- not working
-            //TODO -  Make sure all config files are updated--connections.config, webconfig, etc.
-            //TODO - MAKE SURE Github sensitive data gitignore is working--currently is not
+            //TODO - MAKE SURE Github sensitive data gitignore is working--currently is not in configs folder, get with Jenna
             return View();
         }
 
