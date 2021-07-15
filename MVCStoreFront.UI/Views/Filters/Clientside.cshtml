@@ -1,0 +1,101 @@
+﻿@model IEnumerable<MVCStoreFront.DATA.EF.Product>
+
+@{
+    ViewBag.Title = "Products Table";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    <a href="@Url.Action("ProductsGrid", "Filters")" class="pull-right btn btn-success">Grid View</a>
+</p>
+<table class="table" id="data-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemsPerUnit)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.UnitsOnOrder)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitsSold)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitsInStock)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductCategory.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StockStatus.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemsPerUnit)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.UnitsOnOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitsSold)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitsInStock)
+                </td>*@
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.Image)*@
+                    <img src="~/Content/img/product/t_@item.Image" alt="@item.ProductName" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductCategory.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StockStatus.Status)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |*@
+                    @Html.ActionLink("Details", "Details", new { id = item.ProductID }) 
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.ProductID })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#data-table').DataTable();
+        });
+    </script>
+}

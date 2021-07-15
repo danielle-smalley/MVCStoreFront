@@ -1,0 +1,78 @@
+﻿@*@model IEnumerable<MVCStoreFront.UI.Models.CartItemViewModel>*@
+@model Dictionary<int, MVCStoreFront.UI.Models.CartItemViewModel>
+
+
+@{
+    ViewBag.Title = "Your Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    decimal? cartTotal = 0;
+    int totalCountOfItems = 0;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p class="text-right">
+    @Html.ActionLink("Shop Some More!", "Index", "Products", null, new { @class = "btn btn-info" })
+</p>
+
+@if (Model.Count == 0)
+{
+    <p class="alert alert-warning">
+        @ViewBag.Message @*defined in the shoppingcart controller*@
+    </p>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>Photo</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/Content/img/product/t_@item.Value.Product.Image" alt="@item.Value.Product.ProductName" />
+                </td>
+                <td>
+                    @item.Value.Product.ProductName
+                </td>
+                <td>
+                    @using(Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
+                    {
+                        @Html.Hidden("productID", item.Key)
+                        @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", @style = "max-width: 50px; display: inline;"})
+                        <input type="submit" value="Update Quantity" class="btn btn-success" />
+                    }
+                    @{ 
+                        totalCountOfItems += item.Value.Qty;
+                    }
+                </td>
+                <td>
+                    @string.Format($"{item.Value.Product.Price:c}")
+                </td>
+                <td>
+                    @{ 
+                        decimal? lineTotal = item.Value.Product.Price * item.Value.Qty;
+                        cartTotal += lineTotal;
+                    }
+                    @string.Format($"{lineTotal:c}")
+                </td>
+                <td>
+                    @Html.ActionLink("Remove from Cart", "RemoveFromCart", new { id = item.Key})
+                </td>
+            </tr>
+        }
+    </table>
+    <p class="alert alert-success text-center">
+        Purr-ray! You have @totalCountOfItems item@(totalCountOfItems == 1 ? "" : "s") in your cart.
+        <br/>
+        Your total be-fur taxes & shipping is: @string.Format($"{cartTotal:c}")
+    </p>
+}

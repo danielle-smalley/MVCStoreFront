@@ -1,0 +1,144 @@
+﻿@model IEnumerable<MVCStoreFront.DATA.EF.Product>
+
+@{
+    ViewBag.Title = "Products Grid";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<div class="row">
+    <p>
+        <a href="@Url.Action("Clientside", "Filters")" class="pull-right btn btn-success">Table View</a>
+    </p>
+    <div class="col-md-12 text-center">
+        @foreach (var category in ViewBag.ProductCategories)
+        {
+            string name = category;
+            if (!(category.IndexOf(' ') < 0))
+            {
+                name = category.Substring(0, category.IndexOf(' '));
+            }
+            <button class="button btn-info" id="category-@category" onclick="filter('@name')">@category</button>
+        }
+    </div>
+</div>
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemsPerUnit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitsOnOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitsSold)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitsInStock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductCategory.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StockStatus.Status)
+        </th>
+        <th></th>
+    </tr>*@
+
+<section id="productsGrid">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 col-sm-6 col-xs-6 @(item.ProductCategory.CategoryName) product">
+            <div class="course">
+                <a href="@Url.Action("Details", "Products", new { id = item.ProductID })">
+                    @item.ProductName
+                </a>
+                <div class="course-details">
+                    @if (item.ProductCategory != null)
+                    {
+                        <span class="course-category">
+                            @Html.DisplayFor(modelItem => item.ProductCategory.CategoryName)
+                        </span>
+                    }
+                    <span class="course-price course-free">
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </span>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+
+
+@*<tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemsPerUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitsOnOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitsSold)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitsInStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCategory.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StockStatus.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ProductID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+
+@section scripts{
+    <script>
+        //Go find the node with the #bookGrid, select all the div.book inside of them. For each div, determine if it has the class with the genre name that is passed to the function. If it does, show the item (else). If it doesn't (if), hide the item.
+        function filter(category) {
+            $('#productsGrid div.product').each(function () {
+                if (!$(this).hasClass(category)) { //the code is saying on each book (each book has a div class=book) find the genre
+                    $(this).hide(); //there's code in the CSS that will hide the books that aren't the selected genre
+                }
+                else {
+                    $(this).show();
+                }
+            });
+        }
+    </script>
+    }

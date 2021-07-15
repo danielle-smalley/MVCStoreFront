@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Filters";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-md-6">
+        <h3>Products Client Side</h3>
+        <p>
+            @Html.ActionLink("Products", "ProductsGrid", "Products", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+
+    <div class="col-md-6">
+        <h3>Products Server-Side</h3>
+        <p>
+            @Html.ActionLink("Server Side QueryString - Products", "Products", "Products", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+</div>

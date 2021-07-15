@@ -7,30 +7,29 @@
     <title>MeowMart - Purrfect Products!</title>
     <link rel="icon" href="~/Content/img/android-chrome-192x192.png">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    @*<link rel="stylesheet" href="~/Content/css/bootstrap.min.css">*@
     <!-- animate CSS -->
-    <link rel="stylesheet" href="~/Content/css/animate.css">
+    @*<link rel="stylesheet" href="~/Content/css/animate.css">*@
     <!-- owl carousel CSS -->
-    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
+    @*<link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">*@
     <!-- font awesome CSS -->
-    <link rel="stylesheet" href="~/Content/css/all.css">
+    @*<link rel="stylesheet" href="~/Content/css/all.css">*@
     <!-- flaticon CSS -->
-    <link rel="stylesheet" href="~/Content/css/flaticon.css">
-
-    <link rel="stylesheet" href="~/Content/css/themify-icons.css">
+    @*<link rel="stylesheet" href="~/Content/css/flaticon.css">
+        <link rel="stylesheet" href="~/Content/css/themify-icons.css">*@
     <!-- font awesome CSS -->
-    <link rel="stylesheet" href="~/Content/css/magnific-popup.css">
-
+    @*<link rel="stylesheet" href="~/Content/css/magnific-popup.css">*@
     @*<link href="https://www.foo.com/wp-content/themes/independent-publisher/fonts/fontawesome-free-5-0-6/web-fonts-with-css/fontawesome-all.css" rel="stylesheet">*@
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <script src="https://kit.fontawesome.com/4263a2b62a.js" crossorigin="anonymous"></script>
-    <!-- swiper CSS -->
-    <link rel="stylesheet" href="~/Content/css/slick.css">
+    @*<!-- swiper CSS -->
+        <link rel="stylesheet" href="~/Content/css/slick.css">
+        <!-- style CSS -->
+        <link rel="stylesheet" href="~/Content/css/style.css">*@
 
-    <!-- style CSS -->
-    <link rel="stylesheet" href="~/Content/css/style.css">
+    @Styles.Render("~/Content/css")
 </head>
 <body>
     <!--::header part start::-->
@@ -81,25 +80,37 @@
 
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Functions</a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                                             <a class="dropdown-item" href="@Url.Action("Index", "RolesAdmin")">Roles Admin</a>
                                             <a class="dropdown-item" href="@Url.Action("Index", "UsersAdmin")">Users Admin</a>
-                                    </div>
+                                        </div>
                                     </li>
                                 }
                                 @Html.Partial("_LoginPartial")
                                 <li class="nav-item">
                                     <a class="nav-link" href="@Url.Action("Contact", "Home")">Contact</a>
                                 </li>
+                                <li class="hearer_icon d-flex align-items-center">
+                                    @if (Session["cart"] != null && ViewBag.CountItems > 0)
+                                    {
+                                        <a class="nav-link" href="/ShoppingCart/Index">
+                                            <i class="fa fa-shopping-cart">
+                                                <span class="text-danger">@ViewBag.CountItems</span>
+                                            </i>
+                                        </a>
 
+                                    }
+                                    @*<a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>*@
+                                    @*<a href="@Url.Action("Cart", "Home")">*@
+                                    else
+                                    {
+                                        @Html.ActionLink("Cart", "Index", "ShoppingCart")
+                                    }
+
+                                </li>
                             </ul>
                         </div>
-                        <div class="hearer_icon d-flex align-items-center">
-                            <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <a href="@Url.Action("Cart", "Home")">
-                                <i class="flaticon-shopping-cart-black-shape"></i>
-                            </a>
-                        </div>
+
                     </nav>
                 </div>
             </div>
@@ -167,35 +178,36 @@
     <!-- jquery plugins here-->
     <script src="~/Scripts/jquery-1.12.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    @*<script src="~/Scripts/contact.js"></script>*@
     @*<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
     <!-- popper js -->
-    <script src="~/Scripts/popper.min.js"></script>
+    @*<script src="~/Scripts/popper.min.js"></script>*@
     <!-- bootstrap js -->
-    <script src="~/Scripts/bootstrap.min.js"></script>
-
+    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
     <!-- magnific popup js -->
-    <script src="~/Scripts/jquery.magnific-popup.js"></script>
-    <script src="~/Scripts/swiper.min.js"></script>
-    <script src="~/Scripts/mixitup.min.js"></script>
-
+    @*<script src="~/Scripts/jquery.magnific-popup.js"></script>
+        <script src="~/Scripts/swiper.min.js"></script>
+        <script src="~/Scripts/mixitup.min.js"></script>*@
     <!-- carousel js -->
-    <script src="~/Scripts/owl.carousel.min.js"></script>
-    <script src="~/Scripts/jquery.nice-select.min.js"></script>
+    @*<script src="~/Scripts/owl.carousel.min.js"></script>
+        <script src="~/Scripts/jquery.nice-select.min.js"></script>*@
     <!-- slick js -->
-    <script src="~/Scripts/slick.min.js"></script>
-    <script src="~/Scripts/jquery.counterup.min.js"></script>
-    <script src="~/Scripts/waypoints.min.js"></script>
-    <script src="~/Scripts/contact.js"></script>
-    <script src="~/Scripts/jquery.ajaxchimp.min.js"></script>
-    <script src="~/Scripts/jquery.form.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/mail-script.js"></script>
-    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap">
-    </script>*@
-    <!-- custom js -->
-    <script src="~/Scripts/custom.js"></script>
+    @*<script src="~/Scripts/slick.min.js"></script>
+        <script src="~/Scripts/jquery.counterup.min.js"></script>
+        <script src="~/Scripts/waypoints.min.js"></script>*@
 
+    @*<script src="~/Scripts/jquery.ajaxchimp.min.js"></script>
+        <script src="~/Scripts/jquery.form.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/mail-script.js"></script>*@
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap">
+        </script>*@
+    <!-- custom js -->
+    @*<script src="~/Scripts/custom.js"></script>*@
+
+    @Scripts.Render("~/bundles/template")
     @RenderSection("scripts", required: false)
+
 
 
 

@@ -1,7 +1,7 @@
 ﻿@model MVCStoreFront.DATA.EF.Product
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = $"{Model.ProductName}";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,14 +10,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb_iner">
-                    <h2>Product Details</h2>
+                    <h2>@ViewBag.Title</h2>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<div>
+<div class="col-md-6">
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.ProductName)
@@ -100,7 +100,22 @@
         </dd>
 
     </dl>
+    <div class="col-md-6">
+        <img src="~/Content/img/product/@Model.Image" alt="Product Image" title="@Model.ProductName" />
+    </div>
+    <br/>
+    <br/>
+    <p>
+        @using (Html.BeginForm("AddToCart", "Products", new { @productID = Model.ProductID }, FormMethod.Post, new { @class = "text-center" }))
+        {
+            @Html.HiddenFor(p => p.ProductID)
+            <span class="label">Quantity: </span>
+            @Html.TextBox("Qty", 1, new { @class = "form-control", @style = "max-width: 50px; display: inline;" })
+            <input type="submit" value="Add to Cart" class="btn btn-success" name="qty" />
+        }
+    </p>
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
     @Html.ActionLink("Back to List", "Index")
