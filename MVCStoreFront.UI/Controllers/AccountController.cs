@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using MVCStoreFront.DATA.EF;
 
 namespace MVCStoreFront.UI.Controllers
 {
@@ -153,8 +154,19 @@ namespace MVCStoreFront.UI.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    UserDetail newUserDeets = new UserDetail();
+                    newUserDeets.UserID = user.Id;
+                    newUserDeets.FirstName = model.FirstName;
+                    newUserDeets.LastName = model.LastName;
+
+                    StoreFrontEntities db = new StoreFrontEntities();
+                    db.UserDetails.Add(newUserDeets);
+                    db.SaveChanges();
+
+                    //Let user login with new account
+                    return View("Login");
                     //We are going to add custom code to make sure a user is put into the role of 'User' when a new account is registered.
-                    UserManager.AddToRole(user.Id, "User");
+                    //UserManager.AddToRole(user.Id, "User");
 
 
                     //Commenting out this code for now. The below is default code built in, used for email verification. 
@@ -166,7 +178,7 @@ namespace MVCStoreFront.UI.Controllers
                     //return View("DisplayEmail");
 
                     //Instead, after we create a user and put them in the 'User' role, we will redirect them to the Home page.
-                    return RedirectToAction("Index", "Home");
+                    //return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }

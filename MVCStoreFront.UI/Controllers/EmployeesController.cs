@@ -115,7 +115,7 @@ namespace MVCStoreFront.UI.Controllers
         }
 
         // POST: Employees/Delete/5
-        //TODO - do i need to add soft delete for employees? If so, how?
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]

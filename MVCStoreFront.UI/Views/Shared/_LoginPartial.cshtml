@@ -1,32 +1,89 @@
 ﻿@using Microsoft.AspNet.Identity
+
+@using MVCStoreFront.DATA.EF
+@{
+    //Added to be able to Substring() Username below so full email address is not shown
+    int location = User.Identity.GetUserName().IndexOf("@");
+}
 @if (Request.IsAuthenticated)
 {
+    //Step 2:
+    /*
+     After we have updated the db with UserDetails table and we have updated the EDMX in the data layer, we need to access the userID from AspNet.Identity package. Second, we need to use LINQ to find the matching UserDetail record. Finally, we use it in the UI.
+     */
+
+    StoreFrontEntities db = new StoreFrontEntities();
+
+    string userID = User.Identity.GetUserId();
+
+    UserDetail currentUser = db.UserDetails.Where(ud => ud.UserID == userID).FirstOrDefault();
+
+    //set up some basic userName and favoriteColor info in case we don't load that info from the user.
+    string userFN = "Guest";
+
+    //if we did get a match on UserDetail, use it to populate those variables above
+    if (currentUser != null)
+    {
+        userFN = currentUser.FirstName;
+    }
+    //end of step 2
+
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
         @Html.AntiForgeryToken()
 
-        @*<ul class="nav navbar-nav navbar-right">*@
-        @*<li class="nav-item">
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>*@
-        <li><a class ="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-        @*</ul>*@
+        <ul class="nav navbar-nav">
+            <li>
+                @* Updated below - doesn't show full email *@
+                @* Step 3 - Comment out the original greeting and replace with our greeting*@
+                @*@Html.ActionLink("Hi " + User.Identity.GetUserName().Substring(0, location), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+                @Html.ActionLink($"Hi {userFN}", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "manage", style = " text-shadow: 1px 1px #000;" })
+
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
     }
 }
 else
 {
-    @*<ul class="nav navbar-nav navbar-right">*@
-    <li class="nav-item">
-        <a class="nav-link" href="@Url.Action("Register", "Account")" id="registerLink">
-            Register @*We add the area-hidden true so screenreaders ignore this (it's an icon)*@
-        </a>
-    </li>
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
+
+
+
+
+
+@*@if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @*<ul class="nav navbar-nav navbar-right">*@
+@*<li class="nav-item">
+        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+    </li>*@
+@*<li><a class ="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>*@
+@*</ul>*@
+@*}
+    }
+    else
+    {*@
+@*<ul class="nav navbar-nav navbar-right">*@
+@*<li class="nav-item">
+    <a class="nav-link" href="@Url.Action("Register", "Account")" id="registerLink">
+        Register @*We add the area-hidden true so screenreaders ignore this (it's an icon)*@
+        @*</a>
+    </li>*@
     @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
     @*</ul>*@
     @*<li class="nav-item">
-        <a class="nav-item" href="@Url.Action("Login", "Account")" id="loginLink">
-            Login
-        </a>
-    </li>*@
-}
+            <a class="nav-item" href="@Url.Action("Login", "Account")" id="loginLink">
+                Login
+            </a>
+        </li>*@
+    @*}*@

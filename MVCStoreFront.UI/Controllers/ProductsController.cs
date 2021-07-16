@@ -13,6 +13,7 @@ using MVCStoreFront.UI.Models;
 
 namespace MVCStoreFront.UI.Controllers
 {
+    //TODO - REMOVE SOFT DELETE FROM PRODUCTS
     public class ProductsController : Controller
     {
         private StoreFrontEntities db = new StoreFrontEntities();

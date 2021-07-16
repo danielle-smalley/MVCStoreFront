@@ -142,7 +142,7 @@ namespace MVCStoreFront.DATA.EF//.Metadata
         public int StockStatusID { get; set; }
 
         [Display(Name = "Product Image")]
-        //TODO - handle all other validation manually in the controller
+        // - handle all other validation manually in the controller
         public string Image { get; set; }
 
     }
