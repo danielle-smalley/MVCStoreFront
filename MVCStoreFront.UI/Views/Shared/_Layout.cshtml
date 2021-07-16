@@ -30,6 +30,20 @@
         <link rel="stylesheet" href="~/Content/css/style.css">*@
 
     @Styles.Render("~/Content/css")
+
+    @{ 
+            int countItems = 0;
+            if ((Dictionary<int, MVCStoreFront.UI.Models.CartItemViewModel>)Session["cart"] != null && ((Dictionary<int, MVCStoreFront.UI.Models.CartItemViewModel>)Session["cart"]).Count > 0)
+            {
+                foreach (var item in (Dictionary<int, MVCStoreFront.UI.Models.CartItemViewModel>)Session["cart"])
+                {
+                    countItems += item.Value.Qty;
+                }
+
+            }
+            ViewBag.CountItems = countItems;
+        }
+
 </head>
 <body>
     <!--::header part start::-->
@@ -93,8 +107,8 @@
                                 <li class="hearer_icon d-flex align-items-center">
                                     @if (Session["cart"] != null && ViewBag.CountItems > 0)
                                     {
-                                        <a class="nav-link" href="/ShoppingCart/Index">
-                                            <i class="fa fa-shopping-cart">
+                                        <a href="/ShoppingCart/Index">
+                                            <i class="fas fa-shopping-cart">
                                                 <span class="text-danger">@ViewBag.CountItems</span>
                                             </i>
                                         </a>
