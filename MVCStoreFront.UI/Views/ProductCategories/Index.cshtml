@@ -1,31 +1,29 @@
 ﻿@model IEnumerable<MVCStoreFront.DATA.EF.ProductCategory>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Product Categories";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="breadcrumb_part">
+<div id="main" class="section">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="breadcrumb_iner">
-                    <h2>Product Categories</h2>
-                </div>
+        <div id="MessageDisplay" class="row">
+            <div class="col-md-10 col-md-offset-1" id="MessageContent">
+
             </div>
         </div>
     </div>
-</section>
-<br/>
+</div>
+<h2>@ViewBag.Title</h2>
 
 <!--TODO - how do you list 2 roles (admin & user) here?-->
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
 }
-<table class="table">
+<table class="table" id="ProductCategoriesTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.CategoryName)
@@ -33,23 +31,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryName)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.CategoryID })
-            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-            {
-                @:|
-                @Html.ActionLink("Edit", "Edit", new { id = item.CategoryID }) @:|
-                @Html.ActionLink("Delete", "Delete", new { id = item.CategoryID })
-            }
+    @foreach (var item in Model)
+    {
+        <tr id="ProductCategory-@item.CategoryID">
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @*@Html.ActionLink("Details", "Details", new { id = item.CategoryID })*@
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    @*@:|*@
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.CategoryID })*@ 
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.CategoryID })*@
 
-
-        </td>
-    </tr>
-}
+                @Ajax.ActionLink("Delete", "AjaxDelete", "ProductCategories", new { id = item.CategoryID }, new AjaxOptions { HttpMethod = "POST", Confirm = $"Are you sure you want to delete {item.CategoryName} from Product Categories?", OnSuccess = "deleteConfirmed", OnFailure = "deleteFailed" })
+                }
+            </td>
+        </tr>
+    }
 
 </table>
+
+@section scripts{
+<script>
+    //AJAX DELETE
+    function deleteConfirmed(response, status, data) {
+        var rowID = "#ProductCategory-" + response.id;
+        $("#ProductCategoriesTable").find(rowID).remove();
+        $('#MessageContent').html('<div class="alert alert-success">' + response.message + '</div>');
+    }
+    //delete attempt failed
+    function deleteFailed(response, status, data) {
+        $('#MessageContent').html("<div class='alert alert-danger'>Delete unsuccessful. Is this Product Category referenced by a Product? If so, change the product's Category or delete the product.</div>");
+    }
+</script>
+}

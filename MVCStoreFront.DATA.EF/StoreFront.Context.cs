@@ -30,5 +30,6 @@ namespace MVCStoreFront.DATA.EF
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<StockStatus> StockStatuses { get; set; }
+        public virtual DbSet<UserDetail> UserDetails { get; set; }
     }
 }
