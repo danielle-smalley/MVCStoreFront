@@ -2182,7 +2182,7 @@ ul {
 .main_menu .main-menu-item ul li .nav-link {
   color: #4B3049;
   font-size: 16px;
-  padding: 35px 21px;
+  padding: 25px 18px;
   font-family: "Rubik", sans-serif;
   text-transform: capitalize;
   line-height: 16px;
@@ -2197,7 +2197,7 @@ ul {
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   /* line 12, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_menu.scss */
   .main_menu .main-menu-item ul li .nav-link {
-    padding: 35px 20px;
+    padding: 25px 18px;
   }
 }
 

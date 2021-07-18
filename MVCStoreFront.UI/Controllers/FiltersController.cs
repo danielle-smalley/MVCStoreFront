@@ -17,7 +17,7 @@ namespace MVCStoreFront.UI.Controllers
             return View();
         }
 
-        public ActionResult Clientside() //generate View from here by right clicking and adding. View name Clientside, template of List, Model class Book.(MVC3.DATA.EF), Data context class BookStorePlusEntities, leave boxes unchecked except for use layout
+        public ActionResult Serverside() //generate View from here by right clicking and adding. View name Clientside, template of List, Model class Book.(MVC3.DATA.EF), Data context class BookStorePlusEntities, leave boxes unchecked except for use layout
         {
             //var products = db.Products.Include(p => p.ProductName).Include(p => p.ProductCategory).Include(p => p.StockStatus).Include(p => p.Description).Include(p => p.Price).Include(p => p.ItemsPerUnit).Include(p => p.UnitsInStock).Include(p => p.UnitsOnOrder).Include(p => p.UnitsSold);//remember lambda translates to "evaluates to". Ex: include b where b evaluates to BookRoyalty)
             var products = db.Products;

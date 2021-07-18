@@ -1204,7 +1204,7 @@
     <Content Include="Views\ProductCategories\Edit.cshtml" />
     <Content Include="Views\ProductCategories\Index.cshtml" />
     <Content Include="Views\Filters\Index.cshtml" />
-    <Content Include="Views\Filters\Clientside.cshtml" />
+    <Content Include="Views\Filters\Serverside.cshtml" />
     <Content Include="Views\Products\ProductsGrid.cshtml" />
     <Content Include="Views\Products\Index - Copy.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
