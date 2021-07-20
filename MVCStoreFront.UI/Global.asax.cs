@@ -17,5 +17,14 @@ namespace MVCStoreFront.UI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_Error()
+        {
+            //v1:
+            //Response.Redirect("~/Errors/Index"); //TODO - fix routing here if diff page
+            //v2:
+            Response.Redirect("~/Errors/Unresolved");
+            //TODO - uncomment this when ready to launch
+        }
     }
 }

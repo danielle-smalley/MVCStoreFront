@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\FiltersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StockStatusController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
+    <Compile Include="Exceptions\DBOfflineException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -495,6 +497,7 @@
     <Content Include="Content\img\elements\success-radio.png" />
     <Content Include="Content\img\elements\user1.png" />
     <Content Include="Content\img\elements\user2.png" />
+    <Content Include="Content\img\error.jpg" />
     <Content Include="Content\img\feature_1.png" />
     <Content Include="Content\img\feature_2.png" />
     <Content Include="Content\img\feature_3.png" />
@@ -553,6 +556,7 @@
     <Content Include="Content\img\tranding_item\tranding_item_5.png" />
     <Content Include="Content\img\tranding_item\tranding_item_6.png" />
     <Content Include="Content\img\whitecat.jpg" />
+    <Content Include="error.html" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\themify.svg" />
     <Content Include="fonts\webfonts\fa-brands-400.svg" />
@@ -1208,6 +1212,10 @@
     <Content Include="Views\Products\ProductsGrid.cshtml" />
     <Content Include="Views\Products\Index - Copy.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\Errors\Index.cshtml" />
+    <Content Include="Views\Errors\NotFound.cshtml" />
+    <Content Include="Views\Errors\DBTest.cshtml" />
+    <Content Include="Views\Errors\Unresolved.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

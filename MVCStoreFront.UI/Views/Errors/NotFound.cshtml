@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "You've gotta be kitten me...";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string path = "";
+    if (HttpContext.Current.Request.QueryString["aspxerrorpath"] != null)
+    {
+        path = HttpContext.Current.Request.QueryString["aspxerrorpath"].ToUpper() + " cannot be found.";
+    }
+    else
+    {
+        path = "Ope! Page cannot be found.";
+    }
+
+}
+
+<h2 class="text-warning">@ViewBag.Title</h2>
+<p class="alert alert-warning">
+    @path
+</p>
+
