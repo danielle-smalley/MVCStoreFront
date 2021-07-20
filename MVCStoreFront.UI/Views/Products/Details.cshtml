@@ -103,8 +103,8 @@
     <div class="col-md-6">
         <img src="~/Content/img/product/@Model.Image" alt="Product Image" title="@Model.ProductName" />
     </div>
-    <br/>
-    <br/>
+    <br />
+    <br />
     <p>
         @using (Html.BeginForm("AddToCart", "Products", new { @productID = Model.ProductID }, FormMethod.Post, new { @class = "text-center" }))
         {
@@ -116,7 +116,15 @@
     </p>
 </div>
 
+
+
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ProductID, @class = "btn btn-danger" })
 </p>
+}
+
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>

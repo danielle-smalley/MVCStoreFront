@@ -34,7 +34,54 @@ namespace MVCStoreFront.UI.Controllers
             return Json(new { id = id, message = confirmMessage });
         }
 
+        [HttpGet]
+        public PartialViewResult AjaxDetails(int id)
+        {
+            ProductCategory productCategory = db.ProductCategories.Find(id);
+            return PartialView(productCategory);
+
+            //Create a partial view(PublisherDetails.cshtml):
+            //Template: Details, Model: publisher (data.ef), Data context: BookStorePlusEntities,
+            //Partial view is checked
+            //make tweaks to content
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] //checks and makes sure the token that was sent from the request (get) is the same
+        public JsonResult AjaxCreate(ProductCategory productCategory)
+        {
+            db.ProductCategories.Add(productCategory);
+            db.SaveChanges(); //any time we add or remove, always do .SaveChanges();
+            return Json(productCategory);
+
+            //This action creates a new publisher record and returns publisher's data as JSON 
+            //Create a partial view (PublisherCreate.cshtml)
+            //--template: create for publisher, --data context: BookStorePlusEntities
+            //check create as partial view
+        }
+
+        [HttpGet]
+        public PartialViewResult ProductCategoryEdit(int id)
+        {
+            ProductCategory productCategory = db.ProductCategories.Find(id);
+            return PartialView(productCategory);
+
+            //Create a partial view --> Template: edit, Model: Publisher, data context: BookStoreEntitiesPlus, create as partial view
+            //Make adjustments to content
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult AjaxEdit(ProductCategory productCategory)
+        {
+            db.Entry(productCategory).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json(productCategory);
+        }
+
         #endregion
+
+
 
         // GET: ProductCategories/Details/5
         //public ActionResult Details(int? id)

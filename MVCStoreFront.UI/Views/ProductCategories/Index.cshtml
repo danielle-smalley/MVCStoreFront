@@ -27,14 +27,27 @@
     </div>
 </section>
 @*<h2>@ViewBag.Title</h2>*@
-<br/>
+<br />
 
 <!--TODO - how do you list 2 roles (admin & user) here?-->
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
-    <p>
-        @Html.ActionLink("Create New", "Create")
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+
+    <p class="row">
+        @* Button to toggle the create form *@
+        <button id="toggleProductCategoryCreate" class="btn btn-primary">Add New</button>
+        <br />
+        <br />
     </p>
+
+
+    @* Add AjaxCreate partial view for a create form *@
+    <div id="ProductCategoryCreate">
+        @Html.Partial("AjaxCreate", new MVCStoreFront.DATA.EF.ProductCategory())
+    </div>
 }
 <table class="table" id="ProductCategoriesTable">
     <tr>
@@ -51,14 +64,15 @@
                 @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
             <td>
+                @*<a href="" class="DetailsLink" id="@item.CategoryID">Details</a> |*@
                 @*@Html.ActionLink("Details", "Details", new { id = item.CategoryID })*@
                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                 {
                     @*@:|*@
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.CategoryID })*@ 
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.CategoryID }) |*@
                     @*@Html.ActionLink("Delete", "Delete", new { id = item.CategoryID })*@
-
-                @Ajax.ActionLink("Delete", "AjaxDelete", "ProductCategories", new { id = item.CategoryID }, new AjaxOptions { HttpMethod = "POST", Confirm = $"Are you sure you want to delete {item.CategoryName} from Product Categories?", OnSuccess = "deleteConfirmed", OnFailure = "deleteFailed" })
+                    @*<a href="" class="EditLink" id="@item.CategoryID">Edit</a> @:|*@
+                    @Ajax.ActionLink("Delete", "AjaxDelete", "ProductCategories", new { id = item.CategoryID }, new AjaxOptions { HttpMethod = "POST", Confirm = $"Are you sure you want to delete {item.CategoryName} from Product Categories?", OnSuccess = "deleteConfirmed", OnFailure = "deleteFailed" })
                 }
             </td>
         </tr>
@@ -67,16 +81,152 @@
 </table>
 
 @section scripts{
-<script>
-    //AJAX DELETE
-    function deleteConfirmed(response, status, data) {
-        var rowID = "#ProductCategory-" + response.id;
-        $("#ProductCategoriesTable").find(rowID).remove();
-        $('#MessageContent').html('<div class="alert alert-success">' + response.message + '</div>');
-    }
-    //delete attempt failed
-    function deleteFailed(response, status, data) {
-        $('#MessageContent').html("<div class='alert alert-danger'>Delete unsuccessful. Is this Product Category referenced by a Product? If so, change the product's Category or delete the product.</div>");
-    }
-</script>
+    <script>
+        //AJAX DELETE
+        function deleteConfirmed(response, status, data) {
+            var rowID = "#ProductCategory-" + response.id;
+            $("#ProductCategoriesTable").find(rowID).remove();
+            $('#MessageContent').html('<div class="alert alert-success">' + response.message + '</div>');
+        }
+        //delete attempt failed
+        function deleteFailed(response, status, data) {
+            $('#MessageContent').html("<div class='alert alert-danger'>Delete unsuccessful. Is this Product Category referenced by a Product? If so, change the product's Category or delete the product.</div>");
+        }
+
+        //*********** Details ***************//
+        //Open product category Details partial view in a popup for the correct product category.
+        $('a.DetailsLink').click(function (e) {
+            e.preventDefault();//This prevent default behavior of reloading the page.
+
+            //Target popup placeholder div, pass it data (this-clicked-link's id)
+            //Then apply jQuery UI dialog plugin to make it a popup w/ various settings
+            //Open Details partial view in popup for the correct product category
+            $("#ProductCategoryDetails").data('pId', $(this).attr('id')).dialog({
+                width: 400,
+                height: 200,
+                open: function () {
+                    var catID = $(this).data('pId');
+                    //The below line of code will load the partial view into our dialog box
+                    $(this).load(`/ProductCategories/AjaxDetails/${catID}`);
+                },
+                title: "Category Details",
+                modal: true,
+                resizable: false
+            });//end dialog box content
+        });//end of click event on DetailsLink
+
+        //*********** Create **************//
+        //Toggle the create form
+        $('#ProductCategoryCreate').hide();//starts the form as hidden
+        $('#toggleProductCategoryCreate').click(function () {
+            $('#ProductCategoryCreate').toggle();//toggle to show/hide form
+        });
+
+        //Summary: when the form is submitted, we have to format the data. In order to format the data, we have serialize the data (package it up to send it across the internet). The notification (MessageContent) will show status updates.
+        //jQuery AJAX will:
+        //call the POST AjaxCreate action from ProductCategories controller
+        //pass json data from form to the controller
+        //on failure, notify the user of an error
+        //on success, notify the user of success, reset the form, "add" the new row to the table on this page
+        $('#ProductCategoryCreateForm').submit(function (e) {
+            //Serialize the form inputs for transport via JSON
+            var formData = $(this).serializeArray();
+            console.log(formData);
+            e.preventDefault();//This will prevent the page from reloading
+
+            $.ajax({
+                url: "/ProductCategories/AjaxCreate",
+                type: "POST",
+                data: formData,
+                dataType: "json",
+                error: function (e) {
+                    $('#MessageContent').html("<div class='alert alert-danger'>There was a problem!</div>");
+                },
+                success: function (p) {
+                    //Assemble a new row to be added to the UI
+                    var row = '<tr><td>' + p.CategoryName + '</td>' +
+                       '<td>Refresh to View Options</td></tr>';
+                    //The line below actually adds the row to the table
+                    $('#ProductCategoriesTable').append(row);
+
+                    //We provide a confirmation that is was successful
+                    $('#MessageContent').html('<div class="alert alert-success">Record Added!</div>');
+
+                    //Reset the form
+                    $("#ProductCategoryCreateForm")[0].reset();
+                }
+            });
+        });
+
+
+        //********* Edit *************//
+        //Create a variable for the existing category...will be empty to begin
+        //var originalContent = null;
+
+        ////Handle the click of the Edit button
+        //$('a.EditLink').click(function (e) {
+        //    e.preventDefault();//keep the page from reloading
+        //    //alert('Editing!');-for testing purposes
+        //    //Capture the cat id from ui
+        //    var categoryID = $(this).attr("id");
+
+        //    //Capture the row in the table that corresponds to the id
+        //    //.children() captures all of the nested elements inside the specific row
+        //    var row = $('#ProductCateogry-' + categoryID).children();
+        //    console.log(row);
+
+        //    originalContent = {
+        //        //key : value
+        //        CatId: categoryID,
+        //        CatName: row[0].innerText//.innerText allows us to capture the value
+        //    };
+
+        //    console.log("Original Content", originalContent);
+        //    //Getting the EditForm
+        //    $.get("/ProductCategories/AjaxEdit/" + categoryID, function (data) {
+        //        $('#ProductCategory-' + categoryID).replaceWith(
+        //            '<tr id="ProductCategory-' + categoryID + '"><td colspan="5">' + data + '</td></tr>'
+        //        );
+        //    });
+
+
+
+            //Submitting the Edit Form
+            //$(document).on("click", "#saveUpdate", function () {
+            //    var formData = $("#ProductCategoryEditForm").serializeArray();
+
+            //    $('#MessageContent').html("<div class='alert alert-warning'>Please wait...</div>");
+
+            //    $.ajax({
+            //        url: "/ProductCategories/AjaxEdit",
+            //        type: "POST",
+            //        data: formData,
+            //        dataType: "json",
+            //        success: function (data) {
+            //            //changed msg
+            //            $('#MessageContent').html("<div class='alert alert-success'>Your Record was Successfully Updated!</div>");
+            //            $('#ProductCategoryEditForm')[0].reset();
+
+            //            $(function () {
+            //                var row = '<tr>' +
+            //                    '<td>' + data.CategoryName + '</td>' +
+            //                    '<td>Refresh to view options</td></tr>';
+
+            //                $('#ProductCategory-' + data.CategoryID).replaceWith(row);//rewrote entire line for replace not append
+            //            });
+            //        },
+            //        error: function (e) {
+            //            $('#MessageContent').html("<div class='alert alert-warning'>There was an error. Please try again or contact the site administrator.</div>");
+            //            $(function () {
+            //                var row = '<tr id="ProductCategory-' + originalContent.CatId + '"> <td>' + originalContent.CatName +
+            //                    '</td>' +
+            //                    '</td><td>Refresh to view options</td></tr>';
+
+            //                $('#ProductCategory-' + data.categoryID).replaceWith(row);//rewrote entire line for replace not append
+            //            });
+            //        }
+            //    });
+            //});
+     //});
+    </script>
 }

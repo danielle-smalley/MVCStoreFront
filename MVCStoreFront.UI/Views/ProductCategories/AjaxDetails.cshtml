@@ -1,0 +1,20 @@
+﻿@model MVCStoreFront.DATA.EF.ProductCategory
+@* This is a partial view - doesn't use the layout and is used "as part of" another view. Here it's loaded into a popup/dialog box for ProductCategory as an AJAX operation.  *@
+<div>
+    @*<h4>ProductCategory</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+    </dl>
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

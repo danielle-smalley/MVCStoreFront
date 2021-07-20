@@ -2,15 +2,15 @@
 <html lang="zxx">
 <head>
     <!-- Required meta tags -->
-
     <!--TODO: fix styling of each page/view-->
     <!--TODO: Add product photos for all products-->
     <!--TODO: Fix grid layout for product catalog-->
-    <!--TODO: Utilitize AJAX for CRUD functionality on the views for a look-up table like Categories--broken-->
+    <!--TODO: QUESTION - how did my create new disappear on products? put  back in-->
+    <!--TODO: QUESTION - why is collapsed nav missing an exit now?-->
     <!--TODO: Implement custom error handling in the project - QUESTION - my error page (want to use the Unresolved.html as a default) isn't wanting to load, even after clearing cookies like browser suggests-->
     <!--TODO: Create a subdomain and a database on SmarterASP. Create a backup script of the local DB and execute it on the live DB. Deploy project files, push the final version to GitHub repo...****Make sure no usernames/passwords pushed****-->
     <!--TODO: Link to the live site on PersonalSite-->
-    <!--TODO: why is collapsed nav missing an exit now?-->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>MeowMart - Purrfect Products!</title>
@@ -33,6 +33,9 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <script src="https://kit.fontawesome.com/4263a2b62a.js" crossorigin="anonymous"></script>
+
+    @*NOTE, Module 5 AJAX: find names at jqueryui.com/themeroller, gallyery tab (like excite-bike, south-street or sunny)*@
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css">
     @*<!-- swiper CSS -->
         <link rel="stylesheet" href="~/Content/css/slick.css">
         <!-- style CSS -->
@@ -40,18 +43,18 @@
 
     @Styles.Render("~/Content/css")
 
-    @{ 
-            int countItems = 0;
-            if ((Dictionary<int, MVCStoreFront.UI.Models.CartItemViewModel>)Session["cart"] != null && ((Dictionary<int, MVCStoreFront.UI.Models.CartItemViewModel>)Session["cart"]).Count > 0)
+    @{
+        int countItems = 0;
+        if ((Dictionary<int, MVCStoreFront.UI.Models.CartItemViewModel>)Session["cart"] != null && ((Dictionary<int, MVCStoreFront.UI.Models.CartItemViewModel>)Session["cart"]).Count > 0)
+        {
+            foreach (var item in (Dictionary<int, MVCStoreFront.UI.Models.CartItemViewModel>)Session["cart"])
             {
-                foreach (var item in (Dictionary<int, MVCStoreFront.UI.Models.CartItemViewModel>)Session["cart"])
-                {
-                    countItems += item.Value.Qty;
-                }
-
+                countItems += item.Value.Qty;
             }
-            ViewBag.CountItems = countItems;
+
         }
+        ViewBag.CountItems = countItems;
+    }
 
 </head>
 <body>
@@ -94,8 +97,8 @@
                                     </div>
                                 </li>
                                 @*<li class="nav-item">
-                                    <a class="nav-link" href="@Url.Action("Login", "Account")">Login</a>
-                                </li>*@
+                                        <a class="nav-link" href="@Url.Action("Login", "Account")">Login</a>
+                                    </li>*@
                                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                                 {
 
@@ -234,7 +237,13 @@
         </script>*@
     <!-- custom js -->
     @*<script src="~/Scripts/custom.js"></script>*@
-    @*<script src="https://cdn/jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>*@
+
+    <!--ADDEDjQuery UI CDN-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- ADDED jQuery Ajax CDN-->
+    @*This is an AJAX script that allows for us to make AJAX calls and receive data asynchronously*@
+    <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
 
     @Scripts.Render("~/bundles/template")
     @RenderSection("scripts", required: false)

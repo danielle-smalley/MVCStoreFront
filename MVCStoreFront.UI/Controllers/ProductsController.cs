@@ -13,7 +13,7 @@ using MVCStoreFront.UI.Models;
 
 namespace MVCStoreFront.UI.Controllers
 {
-    //TODO - REMOVE SOFT DELETE FROM PRODUCTS
+
     public class ProductsController : Controller
     {
         private StoreFrontEntities db = new StoreFrontEntities();
@@ -276,25 +276,35 @@ namespace MVCStoreFront.UI.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
-            //For a soft delete of a product record, we will change the stockstatus to be discontinued 
+
             Product product = db.Products.Find(id);
+            //Delete the image file
+            string path = Server.MapPath("~/Content/img/product/");
+            ImageUtility.Delete(path, product.Image);
 
-                if (product.Image != null && product.Image != "noImage.png")
-                {
-                    //delete old/prev file that was uploaded
-                    //**THIS DELETE IS PERMANENT**
-                    System.IO.File.Delete(Server.MapPath("~/Content/img/product/" + product.Image));
-                }
+            db.Products.Remove(product);
+            db.SaveChanges();
+            return RedirectToAction("Index");
 
-                product.StockStatusID = 4; // status 4 is discontinued 
-                product.Image = "noImage.png";
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
+            ////For a soft delete of a product record, we will change the stockstatus to be discontinued 
+            //Product product = db.Products.Find(id);
+
+            //    if (product.Image != null && product.Image != "noImage.png")
+            //    {
+            //        //delete old/prev file that was uploaded
+            //        //**THIS DELETE IS PERMANENT**
+            //        System.IO.File.Delete(Server.MapPath("~/Content/img/product/" + product.Image));
+            //    }
+
+            //    product.StockStatusID = 4; // status 4 is discontinued 
+            //    product.Image = "noImage.png";
+            //    db.Entry(product).State = EntityState.Modified;
+            //    db.SaveChanges();
 
             //Product product = db.Products.Find(id);
             //db.Products.Remove(product);
             //db.SaveChanges();
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

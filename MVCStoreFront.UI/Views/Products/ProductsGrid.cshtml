@@ -11,9 +11,9 @@
         @Html.ActionLink("Create New", "Create")
     </p>*@
 <div class="row">
-    <p>
-        <a href="@Url.Action("Clientside", "Filters")" class="pull-right btn btn-success">Table View</a>
-    </p>
+    @*<p>
+            <a href="@Url.Action("Clientside", "Filters")" class="pull-right btn btn-success">Table View</a>
+        </p>*@
     <div class="col-md-12 text-center">
         @foreach (var category in ViewBag.ProductCategories)
         {
@@ -85,6 +85,10 @@
     }
 </section>
 
+@*<a href="@Url.Action("Delete", "Products", new { id = item.ProductID })">
+    <i class="fa fa-trash-o action-icons" aria-hidden="true"></i>
+</a>*@
+   
 
 @*<tr>
             <td>
@@ -141,4 +145,4 @@
             });
         }
     </script>
-    }
+}
