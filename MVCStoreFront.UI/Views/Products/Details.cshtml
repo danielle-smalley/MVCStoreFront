@@ -121,6 +121,7 @@
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
 <p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID, @class = "btn btn-success" }) |
     @Html.ActionLink("Delete", "Delete", new { id = Model.ProductID, @class = "btn btn-danger" })
 </p>
 }

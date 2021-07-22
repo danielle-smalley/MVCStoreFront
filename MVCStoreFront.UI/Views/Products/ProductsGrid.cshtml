@@ -7,9 +7,9 @@
 
 <h2>@ViewBag.Title</h2>
 
-@*<p>
+<p>
         @Html.ActionLink("Create New", "Create")
-    </p>*@
+    </p>
 <div class="row">
     @*<p>
             <a href="@Url.Action("Clientside", "Filters")" class="pull-right btn btn-success">Table View</a>
@@ -133,11 +133,11 @@
 
 @section scripts{
     <script>
-        //Go find the node with the #bookGrid, select all the div.book inside of them. For each div, determine if it has the class with the genre name that is passed to the function. If it does, show the item (else). If it doesn't (if), hide the item.
+        //Go find the node with the #productGrid, select all the div.book inside of them. For each div, determine if it has the class with the genre name that is passed to the function. If it does, show the item (else). If it doesn't (if), hide the item.
         function filter(category) {
             $('#productsGrid div.product').each(function () {
-                if (!$(this).hasClass(category)) { //the code is saying on each book (each book has a div class=book) find the genre
-                    $(this).hide(); //there's code in the CSS that will hide the books that aren't the selected genre
+                if (!$(this).hasClass(category)) { //the code is saying on each product (each product has a div class=product) find the genre
+                    $(this).hide(); //there's code in the CSS that will hide the products that aren't selected
                 }
                 else {
                     $(this).show();
