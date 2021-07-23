@@ -1,10 +1,28 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
-
-@{
-    ViewBag.Title = "Error";
+﻿@{
+    ViewBag.Title = "You've gotta be kitten me...";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<hgroup>
-    <h1 class="text-error">Error.</h1>
-    <h2 class="text-error">An error occurred while processing your request.</h2>
-</hgroup>
+<div class="col-md-12 text-center">
+    <p class="kitten">@ViewBag.Title</p>
+    <h2 class="text-warning">An Error Has Occured</h2>
+    <p>
+        Ope! That was not supposed to happen! We will get right to work trying to fix the issue.<br />
+        In the meantime, you can <a href="/">click here to return to the home page</a>, or try again.
+        If behavior persists, please contact site administrator.
+    </p>
+    <img src="~/Content/img/error.jpg" />
+</div>
+
+@section htmlHead {
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet" />
+    <style>
+        .kitten {
+            font-family: 'Shadows Into Light', cursive;
+            color: #4b006e;
+            text-shadow: 3px 3px 3px #000;
+            font-size: 7em;
+        }
+    </style>
+}
+

@@ -51,7 +51,7 @@ namespace MVCStoreFront.UI.Controllers
             Product product = db.Products.Find(id);
             if (product == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Unresolved", "Errors");
             }
             return View(product);
         }

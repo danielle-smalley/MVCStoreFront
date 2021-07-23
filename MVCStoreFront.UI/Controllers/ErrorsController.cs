@@ -45,7 +45,7 @@ namespace MVCStoreFront.UI.Controllers
         }
 
         public ActionResult Unresolved()
-        {   
+        {
             return View();
         }
 

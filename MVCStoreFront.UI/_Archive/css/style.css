@@ -252,6 +252,7 @@ h5 {
 /* line 161, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_common.scss */
 img {
   max-width: 100%;
+  float: right;
 }
 
 /* line 165, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_common.scss */
@@ -2603,9 +2604,10 @@ ul {
 @media only screen and (min-width: 1200px) and (max-width: 1440px) {
   /* line 79, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_banner.scss */
   .banner_part .banner_img {
-    max-width: 55%;
+    max-width: 50%;
     top: auto;
     bottom: 0;
+    padding-right: 50px;
   }
 }
 
@@ -2662,7 +2664,7 @@ ul {
 @media (max-width: 576px) {
   /* line 109, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_banner.scss */
   .banner_part .banner_img .pattern_img {
-    max-width: 60%;
+    max-width: 40%;
   }
 }
 
@@ -8524,7 +8526,7 @@ h6 {
   line-height: 1.2;
   color: #fff;
   font-weight: 500;
-  text-transform: capitalize;
+  /*text-transform: capitalize;*/
 }
 
 @media (max-width: 991px) {
@@ -8691,3 +8693,9 @@ h6 {
 }
 
 /*# sourceMappingURL=../css/style.map */
+
+#mainimg{
+    /*float: right;
+    clear: both;*/
+    text-align: center;
+}

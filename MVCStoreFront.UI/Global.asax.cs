@@ -23,8 +23,8 @@ namespace MVCStoreFront.UI
             //v1:
             //Response.Redirect("~/Errors/Index"); //TODO - fix routing here if diff page
             //v2:
-            Response.Redirect("~/Errors/Unresolved");
-            //TODO - uncomment this when ready to launch
+            Response.Redirect("~/Unresolved");
+ 
         }
     }
 }

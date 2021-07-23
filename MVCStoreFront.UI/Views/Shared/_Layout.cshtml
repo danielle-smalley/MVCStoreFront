@@ -1,15 +1,14 @@
 ﻿<!doctype html>
 <html lang="zxx">
 <head>
-    <!-- Required meta tags -->
     <!--TODO: fix styling of each page/view-->
-    <!--TODO: Add product photos for all products-->
     <!--TODO: Fix grid layout for product catalog-->
-    <!--TODO: QUESTION - why is collapsed nav missing an exit now?-->
-    <!--TODO: Implement custom error handling in the project - QUESTION - my error page (want to use the Unresolved.html as a default) isn't wanting to load, even after clearing cookies like browser suggests-->
+<!--TODO: Users admin (and I'm assuming admin) don't work properly when trying to add a new user (asks for first and last names but no fields to enter)-->
+    <!--On products dashboard, remove details view or fix it-->
     <!--TODO: Create a subdomain and a database on SmarterASP. Create a backup script of the local DB and execute it on the live DB. Deploy project files, push the final version to GitHub repo...****Make sure no usernames/passwords pushed****-->
     <!--TODO: Link to the live site on PersonalSite-->
 
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>MeowMart - Purrfect Products!</title>
@@ -54,6 +53,8 @@
         }
         ViewBag.CountItems = countItems;
     }
+
+    @RenderSection("htmlHead", required: false)
 
 </head>
 <body>
@@ -147,7 +148,7 @@
                 </div>
             </div>
         </div>
-        <div class="search_input" id="search_input_box">
+        @*<div class="search_input" id="search_input_box">
             <div class="container ">
                 <form class="d-flex justify-content-between search-inner">
                     <input type="text" class="form-control" id="search_input" placeholder="Search Here">
@@ -155,7 +156,7 @@
                     <span class="ti-close" id="close_search" title="Close Search"></span>
                 </form>
             </div>
-        </div>
+        </div>*@
     </header>
     <!-- Header part end-->
 

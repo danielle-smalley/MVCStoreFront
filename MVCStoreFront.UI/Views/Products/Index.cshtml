@@ -40,6 +40,7 @@
             }
         </div>
     </div>
+<br/>
     @*<table class="table">
         <tr>
             <th>
@@ -77,11 +78,13 @@
 
     <section id="productsGrid">
         @foreach (var item in Model)
+
         {
-            <div class="col-md-3 col-sm-6 col-xs-6 @(item.ProductCategory.CategoryName) product">
+
+            <div class="col-md-6 @(item.ProductCategory.CategoryName) product">
                 <div class="course">
                     <a href="@Url.Action("Details", "Products", new { id = item.ProductID })" class="course-img">
-                        <img src="~/Content/img/product/@item.Image" alt="@item.ProductName" />
+                        <img src="~/Content/img/product/t_@item.Image" alt="@item.ProductName" />
                         <i class="course-link-icon fa fa-link"></i>
                     </a>
                     <a class="course-title" href="@Url.Action("Details", "Products", new { id = item.ProductID})">
@@ -90,9 +93,9 @@
                     <div class="course-details">
                         @if (item.ProductCategory != null)
                         {
-                            <span class="course-category">
+                            @*<span class="course-category">
                                 @Html.DisplayFor(modelItem => item.ProductCategory.CategoryName)
-                            </span>
+                            </span>*@
                         }
                         <span class="course-price course-free">
                             @Html.DisplayFor(modelItem => item.Price)
