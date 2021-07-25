@@ -16,8 +16,9 @@
     </div>
 </section>
 
-<div>
+<div class="container col-md-12">
     <br />
+    <h4>List of roles for this user</h4>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.UserName)
@@ -26,29 +27,34 @@
             @Html.DisplayFor(model => model.UserName)
         </dd>
     </dl>
-</div>
-<h4>List of roles for this user</h4>
-@if (ViewBag.RoleNames.Count == 0)
-{
-    <hr />
-    <p>No roles found for this user.</p>
-}
 
-<table class="table">
 
-    @foreach (var item in ViewBag.RoleNames)
+    @if (ViewBag.RoleNames.Count == 0)
     {
-        <tr>
-            <td>
-                @item
-            </td>
-        </tr>
+        <hr />
+        <p>No roles found for this user.</p>
     }
-</table>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+    <table class="table">
+
+        @foreach (var item in ViewBag.RoleNames)
+        {
+            <tr>
+                <td>
+                    @item
+                </td>
+            </tr>
+        }
+    </table>
+    <p>
+        <a href="@Url.Action("Edit", "UsersAdmin", new { id = Model.Id, @class = "btn btn-primary"})">Edit</a>
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id })*@
+    </p>
+    <p class="text-center">
+        @*@Html.ActionLink("Back to List", "Index")*@
+        <a href="@Url.Action("Index", "UsersAdmin")" class="btn btn-dark p-3">Back to Users List</a>
+    </p>
+</div>
 
 
 

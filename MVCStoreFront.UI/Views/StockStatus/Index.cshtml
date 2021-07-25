@@ -17,37 +17,42 @@
     </div>
 </section>
 
-@if (Request.IsAuthenticated && User.IsInRole("Admin"))
-{
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-}
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
-    </tr>
+<div class="container col-md-12">
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <p class="text-center p-5">
+            @*@Html.ActionLink("Create New", "Create")
+                @Url.Action("Create New", "Create")*@
+            <a href="@Url.Action("Create", "StockStatus")" class="btn_3 pull-right">Add New Stock Status</a>
+        </p>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.StockStatusID })
-            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-            {
-                @:|
-                @Html.ActionLink("Edit", "Edit", new { id = item.StockStatusID }) @:|
-                @Html.ActionLink("Delete", "Delete", new { id = item.StockStatusID })
-            }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Details", "Details", new { id = item.StockStatusID })*@
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        @*@:|*@
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.StockStatusID }) @:|*@
+                        @Html.ActionLink("Delete", "Delete", new { id = item.StockStatusID })
+                    }
 
 
-        </td>
-    </tr>
-}
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>

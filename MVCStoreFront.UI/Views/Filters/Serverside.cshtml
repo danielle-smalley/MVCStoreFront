@@ -16,12 +16,17 @@
         </div>
     </div>
 </section>
-<br/>
+<br />
 @*<h2>@ViewBag.Title</h2>*@
 
 @*<p>
-    <a href="@Url.Action("ProductsGrid", "Filters")" class="pull-right btn btn-success">Grid View</a>
-</p>*@
+        <a href="@Url.Action("ProductsGrid", "Filters")" class="pull-right btn btn-success">Grid View</a>
+    </p>*@
+<p class="text-center p-5">
+    @*@Html.ActionLink("Create New", "Create")
+        @Url.Action("Create New", "Create")*@
+    <a href="@Url.Action("Create", "Products")" class="btn_3 pull-right">Add New Product</a>
+</p>
 <table class="table" id="data-table">
     <thead>
         <tr>
@@ -66,8 +71,8 @@
                     @Html.DisplayFor(modelItem => item.ProductName)
                 </td>
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>*@
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
@@ -75,14 +80,14 @@
                     @Html.DisplayFor(modelItem => item.ItemsPerUnit)
                 </td>
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.UnitsOnOrder)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UnitsSold)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UnitsInStock)
-                </td>*@
+                        @Html.DisplayFor(modelItem => item.UnitsOnOrder)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitsSold)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitsInStock)
+                    </td>*@
                 <td>
                     @*@Html.DisplayFor(modelItem => item.Image)*@
                     <img src="~/Content/img/product/t_@item.Image" alt="@item.ProductName" />

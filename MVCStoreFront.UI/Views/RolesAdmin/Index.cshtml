@@ -16,39 +16,48 @@
     </div>
 </section>
 
-@if (Request.IsAuthenticated && User.IsInRole("Admin"))
-{
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-}
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
+<div class="container col-md-12">
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
-                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                {
-                    @:|
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) @:|
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                }
-            </td>
-        </tr>
+        <p class="text-center p-5">
+            @*@Html.ActionLink("Create New", "Create")
+                @Url.Action("Create New", "Create")*@
+            <a href="@Url.Action("Create", "RolesAdmin")" class="btn_3 pull-right">Add New Admin</a>
+        </p>
     }
 
-</table>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        @:|
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) @:|
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+    <p class="text-center">
+        @*@Html.ActionLink("Back to List", "Index")*@
+        <a href="@Url.Action("Index", "RolesAdmin")" class="btn btn-dark p-3">Back to Admin List</a>
+    </p>
+</div>

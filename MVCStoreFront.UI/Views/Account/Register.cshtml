@@ -17,51 +17,51 @@
 </section>
 <br />
 <hr />
+<div class="container col-md-12">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4 class="p-3">Create a new account:</h4>
+        <hr />
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4 class="p-3">Create a new account:</h4>
-    <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group col-md-8">
+            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+            <div>
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Please enter your first name" })
+            </div>
+            <br />
+            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+            <div>
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Please enter your last name" })
+            </div>
+        </div>
 
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group col-md-8">
-        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
-        <div>
-            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Please enter your first name" })
+        <div class="form-group col-md-8">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Please enter your email address" })
+            </div>
         </div>
-        <br/>
-        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
-        <div>
-            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Please enter your last name" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-8">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div>
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Please enter your email address" })
-        </div>
-    </div>
 
 
-    <div class="form-group col-md-8">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div>
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        <div class="form-group col-md-8">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div>
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
-    <div class="form-group col-md-8">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div>
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        <div class="form-group col-md-8">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div>
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
-    <div class="form-group col-md-6">
-        <div class="col-md-offset-2 col-md-6">
-            <input type="submit" class="btn_3 button-contactForm" value="Register" />
+        <div class="form-group col-md-6">
+            <div class="col-md-offset-2 col-md-6">
+                <input type="submit" class="btn_3 button-contactForm" value="Register" />
+            </div>
         </div>
-    </div>
 
 
 
@@ -69,6 +69,7 @@
 
 
     }
+</div>
 
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")

@@ -1,7 +1,6 @@
 ﻿<!doctype html>
 <html lang="zxx">
 <head>
-    <!--TODO: fix styling of each page/view --MAKE SURE TO STYLE EDIT/DETAILS/DELETE/CREATE TOO ON EVERY ONE-->
     <!--TODO: Create a subdomain and a database on SmarterASP. Create a backup script of the local DB and execute it on the live DB. Deploy project files, push the final version to GitHub repo...****Make sure no usernames/passwords pushed****-->
     <!--TODO: Link to the live site on PersonalSite-->
 
@@ -84,10 +83,11 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                         <a class="dropdown-item" href="@Url.Action("Index", "Products")"> Product Catalog</a>
-                                        @*<a class="dropdown-item" href="@Url.Action("ProductDetails", "Home")">Product Details</a>*@
-                                        <a class="dropdown-item" href="@Url.Action("Index", "ProductCategories")"> Product Categories</a>
                                         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                                         {
+                                            @*<a class="dropdown-item" href="@Url.Action("ProductDetails", "Home")">Product Details</a>*@
+                                            <a class="dropdown-item" href="@Url.Action("Index", "ProductCategories")"> Product Categories</a>
+
                                             <a class="dropdown-item" href="@Url.Action("Serverside", "Filters")">Product Dashboard</a>
                                         }
 
@@ -195,8 +195,9 @@
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </P>
                             <div class="copyright_link">
-                                <a href="#">Terms & Conditions</a>
-                                <a href="#">FAQ</a>
+                                <a href="#">Back to Top</a>
+                                @*<a href="#">Terms & Conditions</a>
+                                <a href="#">FAQ</a>*@
                             </div>
                         </div>
                     </div>
