@@ -8699,3 +8699,8 @@ h6 {
     clear: both;*/
     text-align: center;
 }
+
+.registerCat{
+    float: right;
+    clear: both;
+}

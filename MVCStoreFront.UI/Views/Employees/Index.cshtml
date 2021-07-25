@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MVCStoreFront.DATA.EF.Employee>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Employee Roster";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,88 +10,99 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb_iner">
-                    <h2>Employee Roster</h2>
+                    <h2>@ViewBag.Title</h2>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<br/>
+<br />
 
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
 }
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.JobTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HireDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DirectReportID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Department.DeptName)
-        </th>
-        <th></th>
-    </tr>
+<table class="table" id="data-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HireDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DirectReportID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department.DeptName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HireDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DirectReportID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DeptName)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.EmpID })
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        @:|
+                        @Html.ActionLink("Edit", "Edit", new { id = item.EmpID }) @:|
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HireDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DirectReportID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Department.DeptName)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.EmpID })
-            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-            {
-                @:|
-                @Html.ActionLink("Edit", "Edit", new { id = item.EmpID }) @:|
-
-                @Html.ActionLink("Delete", "Delete", new { id = item.EmpID })
-            }
+                        @Html.ActionLink("Delete", "Delete", new { id = item.EmpID })
+                    }
 
 
-        </td>
-    </tr>
-}
-
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#data-table').DataTable();
+        });
+    </script>
+}

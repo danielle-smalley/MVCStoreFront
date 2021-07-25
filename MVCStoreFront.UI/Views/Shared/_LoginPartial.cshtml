@@ -37,7 +37,7 @@
     @* Updated below - doesn't show full email *@
     @* Step 3 - Comment out the original greeting and replace with our greeting*@
     @*@Html.ActionLink("Hi " + User.Identity.GetUserName().Substring(0, location), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
-    @Html.ActionLink($"Hi {userFN}", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "nav-link", title = "manage", style = " text-shadow: 1px 1px #000;" })
+    @Html.ActionLink($"Hi {userFN}!", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "nav-link", title = "manage", style = " text-shadow: 1px 1px #000;" })
     <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
 
 </li>

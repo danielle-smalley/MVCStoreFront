@@ -25,7 +25,7 @@ namespace MVCStoreFront.UI.Controllers
         [HttpGet]
         public ActionResult Contact()
         {
-            //TODO - MAKE SURE Github sensitive data gitignore is working--currently is not in configs folder, get with Jenna
+
             return View();
         }
 

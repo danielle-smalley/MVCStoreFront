@@ -17,7 +17,9 @@
         </div>
     </div>
 </section>
-<section class="contact-section section_padding">
+<section >
+    <br/>
+    <br/>
     <div class="container">
         @*<div class="d-none d-sm-block mb-5 pb-4">*@
         <div class="row">
@@ -82,13 +84,15 @@
         <br/>
         <br/>
         <div class="row">
-            <div class="col-md-12 col-offset-2">
+            <div class="col-md-8 col-offset-4 p-4">
                 <h2 class="contact-title">Send us a meow-sage!</h2>
             </div>
-            <div class="col-lg-9 col-offsest-1">
+            <br/>
+            <br/>
+            <div class="col-lg-8 p-4">
                 <div class="row">
-                    <div class="col-12">
-                        <hr />
+                    <div class="col-md-10 col-lg-offset-1">
+
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
                             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -130,10 +134,13 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-2">
-                <div class="media contact-info">
-                    <span class="contact-info__icon"><i class="ti-home"></i></span>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <div class="col-lg-3 p-2 border_top">
+                <div class="media contact-info text-heading">
+                    <span class="contact-info__icon pull-right"><i class="ti-home"></i></span>
                     <div class="media-body">
                         <h3>Columbia, Missouri</h3>
                         <p>PO Box 123 65205</p>

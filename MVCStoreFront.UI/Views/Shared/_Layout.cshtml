@@ -1,10 +1,7 @@
 ﻿<!doctype html>
 <html lang="zxx">
 <head>
-    <!--TODO: fix styling of each page/view-->
-    <!--TODO: Fix grid layout for product catalog-->
-<!--TODO: Users admin (and I'm assuming admin) don't work properly when trying to add a new user (asks for first and last names but no fields to enter)-->
-    <!--On products dashboard, remove details view or fix it-->
+    <!--TODO: fix styling of each page/view --MAKE SURE TO STYLE EDIT/DETAILS/DELETE/CREATE TOO ON EVERY ONE-->
     <!--TODO: Create a subdomain and a database on SmarterASP. Create a backup script of the local DB and execute it on the live DB. Deploy project files, push the final version to GitHub repo...****Make sure no usernames/passwords pushed****-->
     <!--TODO: Link to the live site on PersonalSite-->
 
@@ -105,8 +102,8 @@
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                            <a class="dropdown-item" href="@Url.Action("Index", "RolesAdmin")">Roles Admin</a>
-                                            <a class="dropdown-item" href="@Url.Action("Index", "UsersAdmin")">Users Admin</a>
+                                            <a class="dropdown-item" href="@Url.Action("Index", "RolesAdmin")">Admins</a>
+                                            <a class="dropdown-item" href="@Url.Action("Index", "UsersAdmin")">Users</a>
                                             <a class="dropdown-item" href="@Url.Action("Index", "StockStatus")"> Stock Statuses</a>
                                             <a class="dropdown-item" href="@Url.Action("Index", "Departments")"> Departments</a>
                                             <a class="dropdown-item" href="@Url.Action("Index", "Employees")"> Employees</a>

@@ -542,6 +542,7 @@
     <Content Include="Content\img\product_details\prodect_details_3.png" />
     <Content Include="Content\img\product_details\prodect_details_4.png" />
     <Content Include="Content\img\product_overlay.png" />
+    <Content Include="Content\img\registercat.jpg" />
     <Content Include="Content\img\single_product_1.png" />
     <Content Include="Content\img\single_product_2.png" />
     <Content Include="Content\img\single_product_3.png" />
