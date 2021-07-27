@@ -705,9 +705,6 @@
     <Content Include="_Archive\OriginalContent\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="configs\connections.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="_Archive\about.html" />
     <Content Include="_Archive\blog.html" />
     <Content Include="_Archive\cart.html" />
@@ -1056,6 +1053,7 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="configs\Connections.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
