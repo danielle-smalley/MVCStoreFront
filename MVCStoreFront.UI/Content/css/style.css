@@ -2730,10 +2730,18 @@ ul {
 @media (max-width: 991px) {
   /* line 9, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_single_product.scss */
   .single_product_list .single_product_img {
-    max-width: 204px;
+    max-width: inherit;
+    max-height: inherit;
   }
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    /* line 9, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_single_product.scss */
+    .single_product_list .single_product_img {
+        max-width: inherit;
+        max-height: inherit;
+    }
+}
 /* line 15, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_single_product.scss */
 .single_product_list .single_product_img .product_overlay {
   position: absolute;
@@ -8712,6 +8720,15 @@ h6 {
 
     }
 
+@media (max-width: 991px) {
+    /* line 85, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_footer.scss */
+    .course .course-img > img {
+        width: 100px; 
+        height: 100px;
+        padding-left: 0px;
+    }
+}
+
         .course .course-img > img {
             width: 100%;
             height: 100%;
@@ -8804,9 +8821,28 @@ h6 {
     /*display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: 300px;*/
-    padding-left: 200px;
+    padding-left: 100px;
     display: grid;
     grid-template-columns: repeat(4, 3fr);
     column-gap: 10px;
     row-gap: 1em;
+}
+
+@media (max-width: 991px) {
+    /* line 85, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_footer.scss */
+    #productsGrid {
+        padding-left: 0px;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        column-gap: 10px;
+        grid-row-gap: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    /* line 85, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_footer.scss */
+    #map {
+        height: auto;
+        width: auto;
+    }
 }
